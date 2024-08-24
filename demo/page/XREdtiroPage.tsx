@@ -3,15 +3,15 @@ import { XREditor } from '../../src';
 import { MemoryFS } from 'ah-memory-fs';
 import { XRProjectModel } from '../../src';
 import { IndexedDBAdapter } from 'ah-memory-fs-indexed-db';
-import OSS from 'ali-oss';
+// import OSS from 'ali-oss';
 import Path from 'path';
 
-const store = new OSS({
-  region: DEPLOY_OSS_REGION,
-  accessKeyId: DEPLOY_OSS_AK,
-  accessKeySecret: DEPLOY_OSS_SK,
-  bucket: DEPLOY_OSS_BUCKET,
-});
+// const store = new OSS({
+//   region: DEPLOY_OSS_REGION,
+//   accessKeyId: DEPLOY_OSS_AK,
+//   accessKeySecret: DEPLOY_OSS_SK,
+//   bucket: DEPLOY_OSS_BUCKET,
+// });
 
 const fetchRuntimeJsURL = async () => {
   const manifest = await fetch('./manifest.json')
@@ -52,9 +52,9 @@ export const App = () => {
             if (data.type.includes('application/ktx')) mime = 'application/json'; // for CDN compress
             else mime = data.type;
 
-            await store.put(path, data, {
-              headers: { 'Cache-Control': `max-age=${3 * 365 * 24 * 60 * 60}`, 'Content-Type': mime },
-            });
+            // await store.put(path, data, {
+            //   headers: { 'Cache-Control': `max-age=${3 * 365 * 24 * 60 * 60}`, 'Content-Type': mime },
+            // });
           }
 
           return ASSETS_ORIGIN + '/' + path;
